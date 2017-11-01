@@ -21,9 +21,9 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-          Hello, I'm component App!
+          <h3>News:</h3>
           <News data={my_news} />
-          <Comments />
+          {/*<Comments />*/}
       </div>
     );
   }

@@ -1,6 +1,17 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'; //Migrating from React.PropTypes after(v15.5)
+import Article from './article';
 
 class News extends Component {
+    static propTypes = {
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                author: PropTypes.string.isRequired,
+                text: PropTypes.string.isRequired
+            })
+        )
+    };
+
     render() {
         var data = this.props.data;
         var newsTemplate;
@@ -9,8 +20,7 @@ class News extends Component {
             newsTemplate = data.map(function (item, index) {
                 return (
                     <div key={index}>
-                        <p>{item.author}</p>
-                        <p>{item.text}</p>
+                        <Article data={item}/>
                     </div>
                 )
             })
@@ -21,7 +31,7 @@ class News extends Component {
         return (
             <div className="news">
                 {newsTemplate}
-                <strong className={data.length > 0 ? '':'none'}>Count of news: {data.length}</strong>
+                <strong className={'news__count ' + (data.length > 0 ? '':'none')}>Count of news: {data.length}</strong>
             </div>
         )
     }
