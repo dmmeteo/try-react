@@ -23,7 +23,8 @@ class App extends Component {
       <div className="app">
           <h3>News:</h3>
           <News data={my_news} />
-          {/*<Comments />*/}
+          <hr/>
+          <Comments />
       </div>
     );
   }
