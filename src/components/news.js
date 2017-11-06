@@ -1,17 +1,7 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types'; //Migrating from React.PropTypes after(v15.5)
 import Article from './article';
 
 class News extends Component {
-    static propTypes = {
-        data: PropTypes.arrayOf(
-            PropTypes.shape({
-                author: PropTypes.string.isRequired,
-                text: PropTypes.string.isRequired
-            })
-        )
-    };
-
     render() {
         var data = this.props.data;
         var newsTemplate;
