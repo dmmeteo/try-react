@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import News from './news';
 import Comments from './comments';
+import TestInput from './testinput';
 
 var my_news = [
     {
@@ -25,6 +26,7 @@ class App extends Component {
     return (
       <div className="app">
           <h3>News:</h3>
+          <TestInput/>
           <News data={my_news} />
           <hr/>
           <Comments />
