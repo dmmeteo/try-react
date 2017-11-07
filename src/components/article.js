@@ -5,7 +5,7 @@ class Article extends Component {
     constructor(props){
        super(props);
        this.state = {visible: false};
-    };
+    }
 
     static propTypes = {
         data: PropTypes.shape({
@@ -23,7 +23,7 @@ class Article extends Component {
     }
 
     render() {
-        var author = this.props.data.author,
+        let author = this.props.data.author,
             text = this.props.data.text,
             bigText = this.props.data.bigText,
             visible = this.state.visible;
