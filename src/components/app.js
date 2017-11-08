@@ -27,6 +27,7 @@ class App extends Component {
       <div className="app">
           <h3>News:</h3>
           <TestInput/>
+          <hr/>
           <News data={my_news} />
           <hr/>
           <Comments />
