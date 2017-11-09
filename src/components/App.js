@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import News from './news';
-import Comments from './comments';
-import TestInput from './testinput';
+import News from './News';
+import Comments from './Comments';
+import TestInput from './TestInput';
 
 var my_news = [
     {
