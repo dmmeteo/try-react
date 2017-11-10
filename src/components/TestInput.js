@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 class TestInput extends Component {
+    componentDidMount(){
+        ReactDOM.findDOMNode(this.refs.myTestInput).focus()
+    }
+
     onBtnClickHandler(){
         console.log(this.refs);
         alert(ReactDOM.findDOMNode(this.refs.myTestInput).value);
