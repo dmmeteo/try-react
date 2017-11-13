@@ -4,6 +4,11 @@ import ReactDOM from 'react-dom';
 class Add extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            agreeNotChecked: true,
+            authorIsEmpty: true,
+            textIsEmpty: true
+        };
         this.onBtnClickHandler = this.onBtnClickHandler.bind(this);
         this.onCheckRuleClick = this.onCheckRuleClick.bind(this);
     }
@@ -11,12 +16,33 @@ class Add extends Component {
         ReactDOM.findDOMNode(this.refs.author).focus();
     }
 
+
     onBtnClickHandler(e){
         e.preventDefault();
+        let author = ReactDOM.findDOMNode(this.refs.author).value.trim();
+        let text = ReactDOM.findDOMNode(this.refs.text).value.trim();
+        alert('author: '+author+'\n'+'text: '+text);
     }
 
-    onCheckRuleClick(e){
-        ReactDOM.findDOMNode(this.refs.alert_button).disabled = !e.target.checked;
+    onFieldChange(fieldName, e){
+        // var next = {};
+        // if (e.target.value.trim().length > 0) {
+        //     next[fieldName] = false;
+        //     this.setState({[''+fieldName]:false});
+        // } else {
+        //     next[fieldName] = true;
+        // }
+        // this.setState(next);
+
+        if (e.target.value.trim().length > 0) {
+            this.setState({[''+fieldName]: false});
+        } else {
+            this.setState({[''+fieldName]: true});
+        }
+    }
+
+    onCheckRuleClick(){
+        this.setState({agreeNotChecked: !this.state.agreeNotChecked});
     }
 
     render() {
@@ -25,13 +51,13 @@ class Add extends Component {
                 <form className="add cf">
                     <input
                         className="add__author"
-                        defaultValue=""
+                        onChange={this.onFieldChange.bind(this, 'authorIsEmpty')}
                         placeholder="Your name"
                         ref="author"
                     />
                     <textarea
                         className="add__text"
-                        defaultValue=""
+                        onChange={this.onFieldChange.bind(this, 'textIsEmpty')}
                         placeholder="News taxt"
                         ref="text">
                     </textarea>
@@ -42,7 +68,7 @@ class Add extends Component {
                         className="add__btn"
                         onClick={this.onBtnClickHandler}
                         ref="alert_button"
-                        disabled>
+                        disabled={this.state.agreeNotChecked}>
                         Show alert
                     </button>
                 </form>
