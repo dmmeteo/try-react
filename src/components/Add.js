@@ -33,8 +33,8 @@ class Add extends Component {
                         className="add__text"
                         defaultValue=""
                         placeholder="News taxt"
-                        ref="text"
-                    ></textarea>
+                        ref="text">
+                    </textarea>
                     <label className="add__checkrule">
                         <input type='checkbox' defaultChecked={false} ref='checkrule' onChange={this.onCheckRuleClick}/>I agree with site rules
                     </label>
