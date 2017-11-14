@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import EventEmitter from 'event-emitter';
+let EM = new EventEmitter();
 
 class Add extends Component {
     constructor(props){
@@ -16,24 +18,26 @@ class Add extends Component {
         ReactDOM.findDOMNode(this.refs.author).focus();
     }
 
-
     onBtnClickHandler(e){
         e.preventDefault();
+        let textEl = ReactDOM.findDOMNode(this.refs.text);
+
         let author = ReactDOM.findDOMNode(this.refs.author).value.trim();
-        let text = ReactDOM.findDOMNode(this.refs.text).value.trim();
-        alert('author: '+author+'\n'+'text: '+text);
+        let text = textEl.value;
+
+        let item = [{
+            author: author,
+            text: text,
+            bigText: '...'
+        }];
+
+        EM.emit('News.add', item);
+
+        textEl.value = '';
+        this.setState({textIsEmpty: true});
     }
 
     onFieldChange(fieldName, e){
-        // var next = {};
-        // if (e.target.value.trim().length > 0) {
-        //     next[fieldName] = false;
-        //     this.setState({[''+fieldName]:false});
-        // } else {
-        //     next[fieldName] = true;
-        // }
-        // this.setState(next);
-
         if (e.target.value.trim().length > 0) {
             this.setState({[''+fieldName]: false});
         } else {
@@ -46,6 +50,10 @@ class Add extends Component {
     }
 
     render() {
+        let agreeNotChecked = this.state.agreeNotChecked,
+            authorIsEmpty = this.state.authorIsEmpty,
+            textIsEmpty = this.state.textIsEmpty;
+
         return(
             <div>
                 <form className="add cf">
@@ -69,7 +77,7 @@ class Add extends Component {
                         onClick={this.onBtnClickHandler}
                         ref="alert_button"
                         disabled={this.state.agreeNotChecked}>
-                        Show alert
+                        Add news
                     </button>
                 </form>
             </div>

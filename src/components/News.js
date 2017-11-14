@@ -1,7 +1,16 @@
 import React, {Component} from 'react';
 import Article from './Article';
+import PropTypes from 'prop-types';
 
 class News extends Component {
+    constructor(props){
+        super(props);
+    }
+
+    static propTypes = {
+        data: PropTypes.array.isRequired
+    };
+
     render() {
         var data = this.props.data;
         var newsTemplate;

@@ -54,7 +54,7 @@ p {
   box-sizing: content-box;
   color: #FFF;
   text-transform: uppercase;
-  background: #007DDC;
+  background: #28a745;
 }
 .add__btn:disabled {
   background: #CCC;
