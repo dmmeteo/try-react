@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import News from './News';
 import Add from './Add';
-import EventEmitter from 'event-emitter';
-let EM = new EventEmitter();
 
 let my_news = [
     {
@@ -32,14 +30,14 @@ class App extends Component {
 
     componentDidMount(){
         let self = this;
-        EM.addListener('News.add', function (item) {
+        window.ee.addListener('News.add', function (item) {
             let nextNews = item.concat(self.state.news);
             self.setState({news: nextNews});
         })
     }
 
     componentWillMount(){
-        EM.removeListener('News.add');
+        window.ee.removeListener('News.add');
     }
 
     render() {

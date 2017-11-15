@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import EventEmitter from 'event-emitter';
-let EM = new EventEmitter();
+import EventEmitter from 'wolfy87-eventemitter';
+window.ee = new EventEmitter();
 
 class Add extends Component {
     constructor(props){
@@ -31,7 +31,7 @@ class Add extends Component {
             bigText: '...'
         }];
 
-        EM.emit('News.add', item);
+        window.ee.emit('News.add', item);
 
         textEl.value = '';
         this.setState({textIsEmpty: true});
