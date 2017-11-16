@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import EventEmitter from 'wolfy87-eventemitter';
-window.ee = new EventEmitter();
 
 class Add extends Component {
     constructor(props){
@@ -31,7 +29,7 @@ class Add extends Component {
             bigText: '...'
         }];
 
-        window.ee.emit('News.add', item);
+        window.ee.emit('News.add', item); //TODO need refactor ro redux
 
         textEl.value = '';
         this.setState({textIsEmpty: true});

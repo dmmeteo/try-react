@@ -30,7 +30,7 @@ class App extends Component {
 
     componentDidMount(){
         let self = this;
-        window.ee.addListener('News.add', function (item) {
+        window.ee.addListener('News.add', function (item) { //TODO need refactor to redux
             let nextNews = item.concat(self.state.news);
             self.setState({news: nextNews});
         })
