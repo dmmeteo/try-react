@@ -8,7 +8,7 @@ class Header extends Component {
 
     render() {
         return (
-            <div>
+            <div className="header">
                 Header:
                 {this.props.items.map((item, index) =>
                     <a href={item.link} key={index}>{item.label}</a>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import News from './News';
 import Form from './Form';
 import Header from './Header';
+import RegistrationForm from './RegistrationForm';
 
 let my_news = [
     {
@@ -35,7 +36,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-          <Header items={menu}/>
+          <Header items={menu}/><RegistrationForm/>
           <hr/>
           <Form/>
           <hr/>

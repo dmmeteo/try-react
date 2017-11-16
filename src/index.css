@@ -60,3 +60,12 @@ p {
   background: #CCC;
   color: #999;
 }
+.header {
+  color: #FFFFFF;
+  display: inline-block;
+}
+.registration {
+  margin-left: 60px;
+  color: #FFFFFF;
+  display: inline-block;
+}
