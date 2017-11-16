@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import News from './News';
-import Comments from './Comments';
-import Add from './Add';
+import Form from './Form';
+import Header from './Header';
 
-var my_news = [
+let my_news = [
     {
         author: 'John Doe',
         text: 'On Thursday, the fourth day...',
@@ -19,18 +19,28 @@ var my_news = [
         text: 'Is free. Download. The best site - http: // localhost: 3000',
         bigText: 'In fact, you just need to read a very long license agreement.'
     }
-];
+],
+    menu = [
+        {
+            link: '/articles',
+            label: 'Articles'
+        },
+        {
+            link: '/contacts',
+            label: 'Contacts'
+        }
+    ];
 
 class App extends Component {
   render() {
     return (
       <div className="app">
-          <h3>News:</h3>
-          <Add/>
+          <Header items={menu}/>
+          <hr/>
+          <Form/>
           <hr/>
           <News data={my_news} />
           <hr/>
-          <Comments />
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-class Add extends Component {
+class Form extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -25,15 +25,6 @@ class Add extends Component {
     }
 
     onFieldChange(fieldName, e){
-        // var next = {};
-        // if (e.target.value.trim().length > 0) {
-        //     next[fieldName] = false;
-        //     this.setState({[''+fieldName]:false});
-        // } else {
-        //     next[fieldName] = true;
-        // }
-        // this.setState(next);
-
         if (e.target.value.trim().length > 0) {
             this.setState({[''+fieldName]: false});
         } else {
@@ -77,4 +68,4 @@ class Add extends Component {
     }
 }
 
-export default Add
+export default Form

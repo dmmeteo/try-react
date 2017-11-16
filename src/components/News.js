@@ -3,17 +3,17 @@ import Article from './Article';
 
 class News extends Component {
     render() {
-        var data = this.props.data;
-        var newsTemplate;
+        let data = this.props.data;
+        let newsTemplate;
 
         if (data.length > 0) {
-            newsTemplate = data.map(function (item, index) {
-                return (
+            newsTemplate = data.map((item, index) =>
+                (
                     <div key={index}>
                         <Article data={item}/>
                     </div>
                 )
-            })
+            )
         } else {
             newsTemplate = <p>No news...</p>
         }
@@ -21,7 +21,8 @@ class News extends Component {
         return (
             <div className="news">
                 {newsTemplate}
-                <strong className={'news__count ' + (data.length > 0 ? '':'none')}>Count of news: {data.length}</strong>
+                <strong className={'news__count ' + (data.length > 0 ? '' : 'none')}>Count of
+                    news: {data.length}</strong>
             </div>
         )
     }
