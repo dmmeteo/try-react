@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import News from './News';
-import Add from './Add';
+import Form from './Form';
+import Header from './Header';
 
 let my_news = [
     {
@@ -18,39 +19,31 @@ let my_news = [
         text: 'Is free. Download. The best site - http: // localhost: 3000',
         bigText: 'In fact, you just need to read a very long license agreement.'
     }
-];
-
-
+],
+    menu = [
+        {
+            link: '/articles',
+            label: 'Articles'
+        },
+        {
+            link: '/contacts',
+            label: 'Contacts'
+        }
+    ];
 
 class App extends Component {
-    constructor(props){
-        super(props);
-        this.state = {news: my_news}
-    }
-
-    componentDidMount(){
-        let self = this;
-        window.ee.addListener('News.add', function (item) { //TODO need refactor to redux
-            let nextNews = item.concat(self.state.news);
-            self.setState({news: nextNews});
-        })
-    }
-
-    componentWillMount(){
-        window.ee.removeListener('News.add');
-    }
-
-    render() {
-        console.log('render');
-        return (
-            <div className="app">
-                <Add/>
-                <hr/>
-                <h3>News:</h3>
-                <News data={my_news}/>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="app">
+          <Header items={menu}/>
+          <hr/>
+          <Form/>
+          <hr/>
+          <News data={my_news} />
+          <hr/>
+      </div>
+    );
+  }
 }
 
 export default App;

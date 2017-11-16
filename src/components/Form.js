@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
-class Add extends Component {
+class Form extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -83,4 +83,4 @@ class Add extends Component {
     }
 }
 
-export default Add
+export default Form
