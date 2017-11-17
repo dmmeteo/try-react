@@ -1,21 +1,45 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import RegistarationForm from './RegistrationForm';
+import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 
-class Header extends Component {
-    static PorpTypes = {
-        items: PropTypes.array.isRequired
-    };
+export default class Header extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            isOpen: false
+        };
+    }
+
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
 
     render() {
         return (
-            <div className="header">
-                Header:
-                {this.props.items.map((item, index) =>
-                    <a href={item.link} key={index}>{item.label}</a>
-                )}
+            <div>
+                <Navbar color="dark" dark expand="md">
+                    <NavbarBrand href="/">reactstrap</NavbarBrand>
+                    <NavbarToggler onClick={this.toggle}/>
+                    <Collapse isOpen={this.state.isOpen} navbar>
+                        <Nav className="mr-auto" navbar>
+                            {this.props.items.map((item, index) =>
+                                (
+                                    <NavItem>
+                                        <NavLink href={item.link}>{item.label}</NavLink>
+                                    </NavItem>
+                                )
+                            )}
+                        </Nav>
+                        <Nav className="ml-auto" navbar>
+                            <RegistarationForm/>
+                        </Nav>
+                    </Collapse>
+                </Navbar>
             </div>
-        )
+        );
     }
 }
-
-export default Header

@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'; //Migrating from React.PropTypes after(v15.5)
+import { Badge } from 'reactstrap';
 
-class Article extends Component {
+export default class Article extends React.Component {
     constructor(props){
        super(props);
        this.state = {visible: false};
@@ -29,16 +30,14 @@ class Article extends Component {
             visible = this.state.visible;
 
         return (
-            <div className="article">
-                <p className="news__author">{author}</p>
+            <div>
+                <h2>Posted by <Badge color="secondary">{author}</Badge></h2>
                 <p className="news__text">{text}</p>
                 <a href="#"
                    onClick={this.readmoreClick.bind(this)}
-                   className={'news__readmore ' + (visible ? 'none':'')}>Detail...</a>
-                <p className={'news__big-text ' + (visible ? '':'none')}>{bigText}</p>
+                   className={'news__readmore ' + (visible ? 'fade':'')}>Detail...</a>
+                <p className={'news__big-text ' + (visible ? '':'fade')}>{bigText}</p>
             </div>
         )
     }
 }
-
-export default Article
