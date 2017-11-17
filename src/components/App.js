@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import React from 'react';
+import { Container } from 'reactstrap';
 import News from './News';
-import Form from './Form';
 import Header from './Header';
 
 let my_news = [
@@ -32,7 +31,7 @@ let my_news = [
         }
     ];
 
-class App extends Component {
+export default class App extends React.Component {
   render() {
     return (
       <div>
@@ -44,5 +43,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

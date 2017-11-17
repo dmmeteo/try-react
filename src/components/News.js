@@ -3,10 +3,6 @@ import Article from './Article';
 import PropTypes from 'prop-types';
 
 class News extends Component {
-    constructor(props){
-        super(props);
-    }
-
     static propTypes = {
         data: PropTypes.array.isRequired
     };

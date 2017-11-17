@@ -33,7 +33,7 @@ export default class Article extends React.Component {
             <div>
                 <h2>Posted by <Badge color="secondary">{author}</Badge></h2>
                 <p className="news__text">{text}</p>
-                <a href="#"
+                <a href="/"
                    onClick={this.readmoreClick.bind(this)}
                    className={'news__readmore ' + (visible ? 'fade':'')}>Detail...</a>
                 <p className={'news__big-text ' + (visible ? '':'fade')}>{bigText}</p>

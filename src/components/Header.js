@@ -28,7 +28,7 @@ export default class Header extends React.Component {
                         <Nav className="mr-auto" navbar>
                             {this.props.items.map((item, index) =>
                                 (
-                                    <NavItem>
+                                    <NavItem key={index}>
                                         <NavLink href={item.link}>{item.label}</NavLink>
                                     </NavItem>
                                 )
