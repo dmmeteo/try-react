@@ -51,7 +51,7 @@ export default class RegistrationForm extends Component {
                     />
                 </FormGroup>
                 {' '}
-                <Button>Submit</Button>
+                <Button color="warning">Submit</Button>
             </Form>
         )
     }
