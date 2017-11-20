@@ -30,13 +30,31 @@ let my_news = [
             label: 'Contacts'
         }
     ];
+let urlForUsername = username => `https://api.github.com/users/${username}`;
 
 export default class App extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {githubData: ''};
+    }
+
+    componentDidMount(){
+        fetch(urlForUsername(this.props.username))
+            .then(d => d.json())
+            .then(d => {
+                this.setState({
+                    githubData: d
+                })
+            })
+    }
+
   render() {
     return (
       <div>
           <Header items={menu}/>
           <Container>
+              <h3 username="dmmeteo">{this.state.githubData.name}</h3>
+              <h4>{urlForUsername}</h4>
               <News data={my_news} />
           </Container>
       </div>
