@@ -10,9 +10,9 @@ export default class Article extends React.Component {
 
     static propTypes = {
         data: PropTypes.shape({
-            author: PropTypes.string.isRequired,
-            text: PropTypes.string.isRequired,
-            bigText: PropTypes.string.isRequired
+            name: PropTypes.string.isRequired,
+            html_url: PropTypes.string.isRequired,
+            created_at: PropTypes.string.isRequired
         })
     };
 
@@ -24,24 +24,26 @@ export default class Article extends React.Component {
     }
 
     render() {
-        let author = this.props.data.author,
-            text = this.props.data.text,
-            bigText = this.props.data.bigText,
+        let reposName = this.props.data.name,
+            created_at = this.props.data.created_at,
+            html_url = this.props.data.html_url,
             visible = this.state.visible;
 
         return (
             <div>
-                <h2>Posted by <Badge color="secondary">{author}</Badge></h2>
-                <p>{text}</p>
+                <h2>
+                    <Badge color="secondary">{reposName}</Badge>
+                </h2>
+                <p>{created_at}</p>
                 <Button
                    color="info"
                    size="sm"
                    onClick={this.readmoreClick.bind(this)}
                    style={{'display': (visible ? 'none':'block')}}
                 >
-                    Detail...
+                   URL
                 </Button>
-                <p className={'news__big-text ' + (visible ? '':'fade')}>{bigText}</p>
+                <p className={'news__big-text ' + (visible ? '':'fade')}>{html_url}</p>
             </div>
         )
     }

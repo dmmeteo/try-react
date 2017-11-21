@@ -30,22 +30,34 @@ let my_news = [
             label: 'Contacts'
         }
     ];
-let urlForUsername = username => `https://api.github.com/users/${username}`;
+let urlGetUser = username => `https://api.github.com/users/${username}`;
+let urlGetRepos = username => `https://api.github.com/users/${username}/repos`;
 
 export default class App extends React.Component {
     constructor(props){
         super(props);
-        this.state = {githubData: ''};
+        this.state = {
+            githubData: [],
+            reposData: {}
+        };
     }
 
     componentDidMount(){
-        fetch(urlForUsername(this.props.username))
+        fetch(urlGetUser('dmmeteo'))
             .then(d => d.json())
             .then(d => {
                 this.setState({
                     githubData: d
                 })
+            });
+        fetch(urlGetRepos('dmmeteo'))
+            .then(data => data.json())
+            .then(data => {
+                this.setState({
+                    reposData: data
+                })
             })
+
     }
 
   render() {
@@ -53,9 +65,9 @@ export default class App extends React.Component {
       <div>
           <Header items={menu}/>
           <Container>
-              <h3 username="dmmeteo">{this.state.githubData.name}</h3>
-              <h4>{urlForUsername}</h4>
-              <News data={my_news} />
+              <h3>{this.state.githubData.name}</h3>
+              <h4>{this.props.username}</h4>
+              <News data={this.state.reposData} />
           </Container>
       </div>
     );
