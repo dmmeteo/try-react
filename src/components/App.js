@@ -1,40 +1,24 @@
 import React from 'react';
-import { Container } from 'reactstrap';
+import {Container} from 'reactstrap';
+import {connect} from 'react-redux';
 import News from './News';
 import Header from './Header';
 
-let my_news = [
+let menu = [
     {
-        author: 'John Doe',
-        text: 'On Thursday, the fourth day...',
-        bigText: 'at four and a quarter of an hour four black-eyed black-haired devils drew a black ink drawing.'
+        link: '/articles',
+        label: 'Articles'
     },
     {
-        author: 'Just Harry',
-        text: 'I think that $ should be worth 5 hryvnia!',
-        bigText: 'And the euro 8!'
-    },
-    {
-        author: 'Guest',
-        text: 'Is free. Download. The best site - http: // localhost: 3000',
-        bigText: 'In fact, you just need to read a very long license agreement.'
+        link: '/contacts',
+        label: 'Contacts'
     }
-],
-    menu = [
-        {
-            link: '/articles',
-            label: 'Articles'
-        },
-        {
-            link: '/contacts',
-            label: 'Contacts'
-        }
-    ];
+];
 let urlGetUser = username => `https://api.github.com/users/${username}`;
 let urlGetRepos = username => `https://api.github.com/users/${username}/repos`;
 
-export default class App extends React.Component {
-    constructor(props){
+class App extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
             githubData: [],
@@ -42,7 +26,7 @@ export default class App extends React.Component {
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         fetch(urlGetUser('dmmeteo'))
             .then(d => d.json())
             .then(d => {
@@ -60,16 +44,24 @@ export default class App extends React.Component {
 
     }
 
-  render() {
-    return (
-      <div>
-          <Header items={menu}/>
-          <Container>
-              <h3>{this.state.githubData.name}</h3>
-              <h4>{this.props.username}</h4>
-              <News data={this.state.reposData} />
-          </Container>
-      </div>
-    );
-  }
+    render() {
+        console.log(this.props.testStore);
+        return (
+            <div>
+                <Header items={menu}/>
+                <Container>
+                    <h3>{this.state.githubData.name}</h3>
+                    <h4>{this.props.username}</h4>
+                    <News data={this.state.reposData}/>
+                </Container>
+            </div>
+        );
+    }
 }
+
+export default connect(
+    state => ({
+        testStore: state
+    }),
+    dispatch => ({})
+)(App);
