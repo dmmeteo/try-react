@@ -3,6 +3,7 @@ import {Container} from 'reactstrap';
 import {connect} from 'react-redux';
 import News from './News';
 import Header from './Header';
+import lessons from '../lessons.json';
 
 let menu = [
     {
@@ -14,34 +15,19 @@ let menu = [
         label: 'Contacts'
     }
 ];
-let urlGetUser = username => `https://api.github.com/users/${username}`;
-let urlGetRepos = username => `https://api.github.com/users/${username}/repos`;
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            githubData: [],
-            reposData: {}
+            lessonsData: []
         };
     }
 
     componentDidMount() {
-        fetch(urlGetUser('dmmeteo'))
-            .then(d => d.json())
-            .then(d => {
-                this.setState({
-                    githubData: d
-                })
-            });
-        fetch(urlGetRepos('dmmeteo'))
-            .then(data => data.json())
-            .then(data => {
-                this.setState({
-                    reposData: data
-                })
-            })
-
+        this.setState({
+            lessonsData: lessons
+        })
     }
 
     render() {
@@ -50,9 +36,8 @@ class App extends React.Component {
             <div>
                 <Header items={menu}/>
                 <Container>
-                    <h3>{this.state.githubData.name}</h3>
-                    <h4>{this.props.username}</h4>
-                    <News data={this.state.reposData}/>
+                    <h4>Lessons</h4>
+                    <News data={this.state.lessonsData}/>
                 </Container>
             </div>
         );

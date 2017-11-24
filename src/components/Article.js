@@ -10,40 +10,40 @@ export default class Article extends React.Component {
 
     static propTypes = {
         data: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            html_url: PropTypes.string.isRequired,
-            created_at: PropTypes.string.isRequired
+            title: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            text: PropTypes.string.isRequired
         })
     };
 
     readmoreClick(e){
         e.preventDefault();
         this.setState({visible: true}, function() {
-            alert('State is changed!');
+            console.log('State is changed!');
         });
     }
 
     render() {
-        let reposName = this.props.data.name,
-            created_at = this.props.data.created_at,
-            html_url = this.props.data.html_url,
+        let title = this.props.data.title,
+            description = this.props.data.description,
+            text = decodeURI(this.props.data.text),
             visible = this.state.visible;
 
         return (
             <div>
                 <h2>
-                    <Badge color="secondary">{reposName}</Badge>
+                    <Badge color="secondary">{title}</Badge>
                 </h2>
-                <p>{created_at}</p>
+                <p>{description}</p>
                 <Button
                    color="info"
                    size="sm"
                    onClick={this.readmoreClick.bind(this)}
                    style={{'display': (visible ? 'none':'block')}}
                 >
-                   URL
+                    Show text
                 </Button>
-                <p className={'news__big-text ' + (visible ? '':'fade')}>{html_url}</p>
+                <p className='markdown-body' style={{'display': (visible ? 'block':'none')}}>{text}</p>
             </div>
         )
     }

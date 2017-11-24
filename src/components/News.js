@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 
 class News extends Component {
     static propTypes = {
-        data: PropTypes.oneOfType([
-            PropTypes.array,
-            PropTypes.object
-        ])
+        data: PropTypes.array.isRequired
     };
 
     render() {
