@@ -3,6 +3,7 @@ import {Container} from 'reactstrap';
 import {connect} from 'react-redux';
 import News from './News';
 import Header from './Header';
+import AddArticleForm from './AddArticleForm';
 import lessons from '../lessons.json';
 
 let menu = [
@@ -36,7 +37,8 @@ class App extends React.Component {
             <div>
                 <Header items={menu}/>
                 <Container>
-                    <h4>Lessons</h4>
+                    <AddArticleForm/>
+                    <hr/>
                     <News data={this.state.lessonsData}/>
                 </Container>
             </div>
