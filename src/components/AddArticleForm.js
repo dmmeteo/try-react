@@ -1,21 +1,25 @@
 import React, {Component} from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {connect} from 'react-redux';
 
 class AddArticleForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             agreeNotChecked: true,
-            authorIsEmpty: true,
-            textIsEmpty: true
+            titleIsEmpty: true,
+            textIsEmpty: true,
+            title: ''
         };
-        this.onBtnClickHandler = this.onBtnClickHandler.bind(this);
+        this.btnClickHandler = this.btnClickHandler.bind(this);
         this.onCheckRuleClick = this.onCheckRuleClick.bind(this);
     }
 
-    onBtnClickHandler(e) {
+    btnClickHandler(e) {
         e.preventDefault();
-        this.setState({textIsEmpty: true});
+        this.setState({
+            textIsEmpty: true
+        });
     }
 
     onFieldChange(fieldName, e) {
@@ -23,6 +27,9 @@ class AddArticleForm extends Component {
             this.setState({['' + fieldName]: false});
         } else {
             this.setState({['' + fieldName]: true});
+        }
+        if (fieldName === 'titleIsEmpty') {
+            this.props.onBtnClickHandler(e.target.value)
         }
     }
 
@@ -32,16 +39,16 @@ class AddArticleForm extends Component {
 
     render() {
         let agreeNotChecked = this.state.agreeNotChecked,
-            authorIsEmpty = this.state.authorIsEmpty,
+            titleIsEmpty = this.state.titleIsEmpty,
             textIsEmpty = this.state.textIsEmpty;
 
         return (
             <Form>
                 <FormGroup>
                     <Label for="title">Title</Label>
-                    <Input type="email"
+                    <Input type="text"
                            placeholder="article title"
-                           onChange={this.onFieldChange.bind(this, 'textIsEmpty')}/>
+                           onChange={this.onFieldChange.bind(this, 'titleIsEmpty')}/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="text">Text of article</Label>
@@ -56,7 +63,7 @@ class AddArticleForm extends Component {
                         I agree with site rules
                     </Label>{' '}
                     <Button
-                        onClick={this.onBtnClickHandler}
+                        onClick={this.btnClickHandler}
                         disabled={this.state.agreeNotChecked}
                         color={this.state.agreeNotChecked ? "secondary":"primary"}
                         size="lg"
@@ -69,5 +76,15 @@ class AddArticleForm extends Component {
     }
 }
 
+export default connect(
+    state => ({
+        testStore: state
+    }),
+    dispatch => ({
+        onBtnClickHandler: (title) => {
+            dispatch({type: 'ADD_ARTICLE', title: title})
+        }
+    })
+)(AddArticleForm);
 // TODO create redux Store
-export default AddArticleForm
+// export default AddArticleForm

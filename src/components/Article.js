@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'; //Migrating from React.PropTypes after(v15.5)
-import { Badge, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 export default class Article extends React.Component {
     constructor(props){
@@ -32,14 +32,14 @@ export default class Article extends React.Component {
         return (
             <div>
                 <h2>
-                    <Badge color="secondary">{title}</Badge>
+                    {title}
                 </h2>
                 <p>{description}</p>
                 <Button
-                   color="info"
-                   size="sm"
-                   onClick={this.readmoreClick.bind(this)}
-                   style={{'display': (visible ? 'none':'block')}}
+                    color="info"
+                    size="sm"
+                    onClick={this.readmoreClick.bind(this)}
+                    style={{'display': (visible ? 'none':'block')}}
                 >
                     Show text
                 </Button>

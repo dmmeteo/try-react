@@ -7,21 +7,16 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 // import {Router, Route, hashHistory} from 'react-router'
 
-const initialState = [
-    'Smells like spirit',
-    'Enter sendman'
-];
-
-function repos(state = initialState, action) {
-    if (action.type === 'ADD_REPOS') {
+function articles(state = [], action) {
+    if (action.type === 'ADD_ARTICLE') {
         return [
             ...state,
-            action.name
+            action.title
         ];
     }
     return state
 }
-const store = createStore(repos);
+const store = createStore(articles);
 
 ReactDOM.render(
     <Provider store={store}>
