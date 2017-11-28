@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import News from './News';
 import Header from './Header';
 import AddArticleForm from './AddArticleForm';
-import lessons from '../lessons.json';
 
 let menu = [
     {
@@ -18,28 +17,14 @@ let menu = [
 ];
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            lessonsData: []
-        };
-    }
-
-    componentDidMount() {
-        this.setState({
-            lessonsData: lessons
-        })
-    }
-
     render() {
-        console.log(this.props.testStore);
         return (
             <div>
                 <Header items={menu}/>
                 <Container>
                     <AddArticleForm/>
                     <hr/>
-                    <News data={this.state.lessonsData}/>
+                    <News data={this.props.lessonsData}/>
                 </Container>
             </div>
         );
@@ -48,7 +33,6 @@ class App extends React.Component {
 
 export default connect(
     state => ({
-        testStore: state
-    }),
-    dispatch => ({})
+        lessonsData: state
+    })
 )(App);

@@ -8,18 +8,22 @@ class AddArticleForm extends Component {
         this.state = {
             agreeNotChecked: true,
             titleIsEmpty: true,
-            textIsEmpty: true,
-            title: ''
+            textIsEmpty: true
         };
         this.btnClickHandler = this.btnClickHandler.bind(this);
         this.onCheckRuleClick = this.onCheckRuleClick.bind(this);
+        this.submitHandler = this.submitHandler.bind(this);
+    }
+
+    submitHandler(e){
+        this.props.onSubmitHandler({
+            title: e.target.title.value,
+            text: e.target.text.value
+        });
+        e.preventDefault();
     }
 
     btnClickHandler(e) {
-        e.preventDefault();
-        this.setState({
-            textIsEmpty: true
-        });
     }
 
     onFieldChange(fieldName, e) {
@@ -27,9 +31,6 @@ class AddArticleForm extends Component {
             this.setState({['' + fieldName]: false});
         } else {
             this.setState({['' + fieldName]: true});
-        }
-        if (fieldName === 'titleIsEmpty') {
-            this.props.onBtnClickHandler(e.target.value)
         }
     }
 
@@ -43,16 +44,18 @@ class AddArticleForm extends Component {
             textIsEmpty = this.state.textIsEmpty;
 
         return (
-            <Form>
+            <Form onSubmit={this.submitHandler}>
                 <FormGroup>
                     <Label for="title">Title</Label>
                     <Input type="text"
+                           name="title"
                            placeholder="article title"
                            onChange={this.onFieldChange.bind(this, 'titleIsEmpty')}/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="text">Text of article</Label>
                     <Input type="textarea"
+                           name="text"
                            onChange={this.onFieldChange.bind(this, 'textIsEmpty')}/>
                 </FormGroup>
                 <FormGroup check>
@@ -63,7 +66,7 @@ class AddArticleForm extends Component {
                         I agree with site rules
                     </Label>{' '}
                     <Button
-                        onClick={this.btnClickHandler}
+                        // onClick={this.btnClickHandler}
                         disabled={this.state.agreeNotChecked}
                         color={this.state.agreeNotChecked ? "secondary":"primary"}
                         size="lg"
@@ -81,10 +84,11 @@ export default connect(
         testStore: state
     }),
     dispatch => ({
-        onBtnClickHandler: (title) => {
-            dispatch({type: 'ADD_ARTICLE', title: title})
+        onSubmitHandler: (data) => {
+            dispatch({
+                type: 'GET_ARTICLE_REQUEST',
+                payload: data
+            })
         }
     })
 )(AddArticleForm);
-// TODO create redux Store
-// export default AddArticleForm
