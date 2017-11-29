@@ -18,16 +18,17 @@ let menu = [
 
 class App extends React.Component {
     render() {
-        const { name, surname, age } = this.props.user;
+        const {name} = this.props.user;
+        const {category, articles} = this.props.page;
         return (
             <div>
                 <Header items={menu}/>
                 <Container>
-                    <p>Привет из App, {name} {surname}!</p>
-                    <p>Тебе уже {age} ?</p>
+                    <p>Hello from App, {name}!</p>
                     <AddArticleForm/>
                     <hr/>
-                    <News data={this.props.lessonsData}/>
+                    <h3>from category: {category}</h3>
+                    <News data={articles}/>
                 </Container>
             </div>
         );
@@ -36,8 +37,8 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        user: state,
-        lessonsData: state
+        user: state.user,
+        page: state.page
     }
 }
 
