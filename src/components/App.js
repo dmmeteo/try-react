@@ -18,10 +18,13 @@ let menu = [
 
 class App extends React.Component {
     render() {
+        const { name, surname, age } = this.props.user;
         return (
             <div>
                 <Header items={menu}/>
                 <Container>
+                    <p>Привет из App, {name} {surname}!</p>
+                    <p>Тебе уже {age} ?</p>
                     <AddArticleForm/>
                     <hr/>
                     <News data={this.props.lessonsData}/>
@@ -31,8 +34,11 @@ class App extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
+function mapStateToProps(state) {
+    return {
+        user: state,
         lessonsData: state
-    })
-)(App);
+    }
+}
+
+export default connect(mapStateToProps)(App);
