@@ -1,9 +1,9 @@
 import React from 'react';
 import {Container} from 'reactstrap';
 import {connect} from 'react-redux';
-import News from './News';
-import Header from './Header';
-import AddArticleForm from './AddArticleForm';
+import News from '../components/News';
+import Header from '../components/Header';
+import AddArticleForm from '../components/AddArticleForm';
 
 let menu = [
     {
