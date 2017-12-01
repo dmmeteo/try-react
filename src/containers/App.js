@@ -1,7 +1,8 @@
 import React from 'react';
 import {Container} from 'reactstrap';
 import {connect} from 'react-redux';
-import News from '../components/News';
+import Page from '../components/Page';
+import User from '../components/User';
 import Header from '../components/Header';
 import AddArticleForm from '../components/AddArticleForm';
 
@@ -18,17 +19,15 @@ let menu = [
 
 class App extends React.Component {
     render() {
-        const {name} = this.props.user;
-        const {category, articles} = this.props.page;
+        const {user, page} = this.props;
         return (
             <div>
                 <Header items={menu}/>
+                <User name={user.name}/>
                 <Container>
-                    <p>Hello from App, {name}!</p>
                     <AddArticleForm/>
                     <hr/>
-                    <h3>from category: {category}</h3>
-                    <News data={articles}/>
+                    <Page articles={page.articles} category={page.category}/>
                 </Container>
             </div>
         );

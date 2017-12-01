@@ -35,6 +35,7 @@ export default class Header extends React.Component {
                             )}
                         </Nav>
                         <Nav className="ml-auto" navbar>
+                            {this.props.user}
                             <RegistarationForm/>
                         </Nav>
                     </Collapse>
