@@ -1,8 +1,18 @@
 import React from 'react';
 import Article from './Article';
 import PropTypes from 'prop-types';
+import { Button } from 'reactstrap';
 
 export default class Page extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onCategoryBtnClick = this.onCategoryBtnClick.bind(this);
+    }
+    onCategoryBtnClick(e){
+        console.log(e.target.textContent);
+        this.props.setCategory(e.target.textContent);
+    }
+
     render() {
         const {category, articles} = this.props;
         let newsTemplate;
@@ -15,9 +25,16 @@ export default class Page extends React.Component {
                 )
             )
         }
+        // TODO fix h3 with category name
         return (
             <div>
-                <h2>From category: {category}</h2>
+                <p>
+                    <Button color="secondary" onClick={this.onCategoryBtnClick}>boo</Button>{' '}
+                    <Button color="warning" onClick={this.onCategoryBtnClick}>js</Button>{' '}
+                    <Button color="info" onClick={this.onCategoryBtnClick}>py</Button>
+                </p>
+
+                <h3>Is: {category}</h3>
                 <hr/>
 
                 {newsTemplate}
@@ -33,5 +50,6 @@ export default class Page extends React.Component {
 
 Page.PropTypes = {
     category: PropTypes.string.isRequired,
-    articles: PropTypes.array.isRequired
+    articles: PropTypes.array.isRequired,
+    setCategory: PropTypes.func.isRequired
 };

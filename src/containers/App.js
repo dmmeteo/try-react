@@ -1,8 +1,10 @@
 import React from 'react';
 import {Container} from 'reactstrap';
 import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Page from '../components/Page';
 import User from '../components/User';
+import * as pageActions from '../actions/PageActions';
 import Header from '../components/Header';
 import AddArticleForm from '../components/AddArticleForm';
 
@@ -20,6 +22,8 @@ let menu = [ //TODO normal menu from redux
 class App extends React.Component {
     render() {
         const {user, page} = this.props;
+        const {setCategory} = this.props.pageActions;
+
         return (
             <div>
                 <Header items={menu}/>
@@ -27,7 +31,7 @@ class App extends React.Component {
                 <Container>
                     <AddArticleForm/>
                     <hr/>
-                    <Page articles={page.articles} category={page.category}/>
+                    <Page articles={page.articles} category={page.category} setCategory={setCategory}/>
                 </Container>
             </div>
         );
@@ -41,4 +45,10 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+    return {
+        pageActions: bindActionCreators(pageActions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
