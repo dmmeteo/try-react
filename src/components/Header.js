@@ -19,6 +19,7 @@ export default class Header extends React.Component {
     }
 
     render() {
+        //TODO toggle user/login
         return (
             <div>
                 <Navbar color="dark" dark expand="md">
@@ -35,7 +36,6 @@ export default class Header extends React.Component {
                             )}
                         </Nav>
                         <Nav className="ml-auto" navbar>
-                            {this.props.user}
                             <RegistarationForm/>
                         </Nav>
                     </Collapse>

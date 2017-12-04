@@ -6,7 +6,7 @@ import User from '../components/User';
 import Header from '../components/Header';
 import AddArticleForm from '../components/AddArticleForm';
 
-let menu = [
+let menu = [ //TODO normal menu from redux
     {
         link: '/articles',
         label: 'Articles'
