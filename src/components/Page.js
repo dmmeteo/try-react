@@ -9,7 +9,6 @@ export default class Page extends React.Component {
         this.onCategoryBtnClick = this.onCategoryBtnClick.bind(this);
     }
     onCategoryBtnClick(e){
-        console.log(e.target.textContent);
         this.props.setCategory(e.target.textContent);
     }
 
@@ -25,7 +24,6 @@ export default class Page extends React.Component {
                 )
             )
         }
-        // TODO fix h3 with category name
         return (
             <div>
                 <p>
