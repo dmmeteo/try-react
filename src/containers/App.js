@@ -8,7 +8,9 @@ import * as pageActions from '../actions/PageActions';
 import Header from '../components/Header';
 import AddArticleForm from '../components/AddArticleForm';
 
-let menu = [ //TODO normal menu from redux
+
+//TODO normal menu from redux
+let menu = [
     {
         link: '/articles',
         label: 'Articles'
